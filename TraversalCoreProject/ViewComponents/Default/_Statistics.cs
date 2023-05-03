@@ -13,6 +13,7 @@ namespace TraversalCoreProject.ViewComponents
             ViewBag.v1 = C.Destinations.Count();
             ViewBag.v2 = C.Guides.Count();
             ViewBag.v3 = 350;
+            ViewBag.v4 = C.Comments.Count();
             return View();
         }
     }
