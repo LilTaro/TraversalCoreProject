@@ -2,8 +2,7 @@
 
 namespace TraversalCoreProject.Areas.Member.Controllers
 {
-    [Area("Member")]
-    public class CommentController : Controller
+    public class MessageController : Controller
     {
         public IActionResult Index()
         {
