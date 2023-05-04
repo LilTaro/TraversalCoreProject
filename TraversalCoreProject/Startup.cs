@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TraversalCoreProject.Models;
 
 namespace TraversalCoreProject
 {
@@ -28,14 +29,15 @@ namespace TraversalCoreProject
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddDbContext<Context>();
-			services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
+			services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>()
+			.AddErrorDescriber<customIdentityValidator>().AddEntityFrameworkStores<Context>();
 			services.AddControllersWithViews();
 
-			services.AddMvc(config =>
-			{
-				var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-				config.Filters.Add(new AuthorizeFilter(policy));
-			});
+			//services.AddMvc(config =>
+			//{
+			//	var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+			//	config.Filters.Add(new AuthorizeFilter(policy));
+			//});
 
 			services.AddMvc();
 		}
@@ -66,6 +68,14 @@ namespace TraversalCoreProject
 					name: "default",
 					pattern: "{controller=Home}/{action=Index}/{id?}");
 			});
-		}
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+            });
+        }
 	}
 }
