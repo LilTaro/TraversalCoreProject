@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Abstract;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
@@ -8,8 +9,13 @@ namespace TraversalCoreProject.Controllers
 {
     public class CommentController : Controller
     {
-        CommentManager commentManager = new CommentManager(new EFCommentDal());
-        
+        private readonly ICommentDal _commentDal;
+
+        public CommentController(ICommentDal commentDal)
+        {
+            _commentDal = commentDal;
+        }
+
         [HttpGet]
         public PartialViewResult AddComment(int id)
         {
@@ -21,7 +27,7 @@ namespace TraversalCoreProject.Controllers
         {
             comment.CommentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             comment.Status = true;
-            commentManager.Add(comment);
+            _commentDal.Insert(comment);
             return RedirectToAction("Index","Destination");
         }
     }

@@ -11,5 +11,6 @@ namespace BusinessLayer.Abstract
     public interface ICommentService:IGenericService<Comment>
     {
         List<Comment> GetDestinationByID(int id);
+        List<Comment> GetListCommentWithDestination();
     }
 }

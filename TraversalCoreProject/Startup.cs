@@ -1,5 +1,6 @@
 using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
+using BusinessLayer.Container;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
@@ -35,7 +36,10 @@ namespace TraversalCoreProject
 			services.AddDbContext<Context>();
 			services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>()
 			.AddErrorDescriber<customIdentityValidator>().AddEntityFrameworkStores<Context>();
-			services.AddControllersWithViews();
+
+			services.ContainerDependencies();
+			
+            services.AddControllersWithViews();
 
 			//services.AddMvc(config =>
 			//{
@@ -59,6 +63,7 @@ namespace TraversalCoreProject
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
+			app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404", "?code={0}");
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 			app.UseAuthentication();
@@ -72,6 +77,14 @@ namespace TraversalCoreProject
 					name: "default",
 					pattern: "{controller=Home}/{action=Index}/{id?}");
 			});
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+            });
 
             app.UseEndpoints(endpoints =>
             {

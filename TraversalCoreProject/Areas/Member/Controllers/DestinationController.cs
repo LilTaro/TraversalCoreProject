@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Abstract;
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,10 +8,16 @@ namespace TraversalCoreProject.Areas.Member.Controllers
     [Area("Member")]
     public class DestinationController : Controller
     {
-        DestinationManager destination = new DestinationManager(new EFDestinationDal());
+        private readonly IDestinationDal _destinationDal;
+
+        public DestinationController(IDestinationDal destinationDal)
+        {
+            _destinationDal = destinationDal;
+        }
+
         public IActionResult Index()
         {
-            var values = destination.GetList();
+            var values = _destinationDal.GetList();
             return View(values);
         }
     }
