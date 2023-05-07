@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
 }
 
 <h1>Yorum Listesi</h1>
@@ -17,8 +18,9 @@
     </tr>
     @foreach (var item in Model)
     {
+        { count += 1; }
         <tr>
-            <td>@item.CommentID</td>
+            <td>@count</td>
             <td>@item.CommentUser</td>
             <td>@item.Destination.DestinationCity</td>
             <td>@(((DateTime)item.CommentDate).ToString("dd-MMM-yyyy"))</td>

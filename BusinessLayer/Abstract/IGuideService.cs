@@ -9,6 +9,7 @@ namespace BusinessLayer.Abstract
 {
 	public interface IGuideService:IGenericService<Guide>
 	{
-
-	}
+		void ChangeToFalseByGuide(int id);
+		void ChangeToTrueByGuide(int id);
+    }
 }

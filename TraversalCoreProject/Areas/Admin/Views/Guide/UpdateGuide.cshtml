@@ -1,12 +1,13 @@
 ﻿@model EntityLayer.Concrete.Guide
 @{
-    ViewData["Title"] = "AddGuide";
+    ViewData["Title"] = "UpdateGuide";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Rehber Ekleme Sayfası</h1>
+<h1>Rehber Güncelleme Sayfası</h1>
 
 <form method="post">
+    @Html.HiddenFor(X=>X.GuideID)
     <div class="form-group">
         @Html.Label("Ad Soyad")
         <input type="text" asp-for="GuideName" class="form-control" />
@@ -35,5 +36,5 @@
         <span asp-validation-for="GuideDesc" class="text-danger"></span>
     </div>
     <br />
-    <button class="btn btn-outline-success">Rehber Ekle</button>
+    <button class="btn btn-outline-success">Rehber Güncelle</button>
 </form>
