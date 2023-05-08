@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="ClosedXML" Version="0.101.0" />
     <PackageReference Include="EPPlus" Version="6.2.3" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
@@ -34,8 +35,8 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Member\Data\" />
+    <Folder Include="Logs\" />
     <Folder Include="wwwroot\pdfReports\" />
     <Folder Include="wwwroot\userImages\" />
   </ItemGroup>

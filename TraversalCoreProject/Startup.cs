@@ -1,29 +1,20 @@
-using BusinessLayer.Abstract;
-using BusinessLayer.Concrete;
 using BusinessLayer.Container;
-using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
-using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
-using Microsoft.AspNetCore.Authorization;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using TraversalCoreProject.Models;
 
 namespace TraversalCoreProject
 {
-	public class Startup
+    public class Startup
 	{
 		public Startup(IConfiguration configuration)
 		{
@@ -32,8 +23,9 @@ namespace TraversalCoreProject
 
 		public IConfiguration Configuration { get; }
 
-		// This method gets called by the runtime. Use this method to add services to the container.
-		public void ConfigureServices(IServiceCollection services)
+        // This method gets called by the runtime. Use this method to add services to the container.
+        [Obsolete]
+        public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddLogging(X =>
 			{
@@ -47,8 +39,12 @@ namespace TraversalCoreProject
 			.AddErrorDescriber<customIdentityValidator>().AddEntityFrameworkStores<Context>();
 
 			services.ContainerDependencies();
-			
-            services.AddControllersWithViews();
+
+			services.AddAutoMapper(typeof(Startup));
+
+			services.CustomerValidator();
+
+			services.AddControllersWithViews().AddFluentValidation();
 
 			//services.AddMvc(config =>
 			//{
