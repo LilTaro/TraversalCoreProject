@@ -1,0 +1,34 @@
+﻿@model List<VisitorViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<h1>Api Ziyaretçi Listesi</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Ad Soyad</th>
+        <th>Şehir</th>
+        <th>Ülke</th>
+        <th>Mail</th>
+        <th>Güncelle</th>
+        <th>Sil</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        { count += 1; }
+        <tr>
+            <td>@count</td>
+            <td>@item.VisitorName @item.VisitorSurname</td>
+            <td>@item.VisitorCity</td>
+            <td>@item.VisitorCountry</td>
+            <td>@item.VisitorMail</td>
+            <td><a href="/Admin/VisitorAPI/UpdateVisitor/@item.VisitorID" class="btn btn-outline-info">Güncelle</a></td>
+            <td><a href="/Admin/VisitorAPI/DeleteVisitor/@item.VisitorID" class="btn btn-outline-danger">Sil</a></td>
+        </tr>
+    }
+</table>
+<a href="/Admin/VisitorAPI/AddVisitor" class="btn btn-outline-success">Yeni Ziyaretçi Ekle</a>

@@ -10,6 +10,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
+using TraversalCoreProject.CQRS.Handlers;
+using TraversalCoreProject.CQRS.Handlers.DestinationHandlers;
 using TraversalCoreProject.Models;
 
 namespace TraversalCoreProject
@@ -27,7 +29,14 @@ namespace TraversalCoreProject
         [Obsolete]
         public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddLogging(X =>
+			services.AddScoped<GetAllDestinationQueryHandler>();
+            services.AddScoped<GetDestinationByIDQueryHandler>();
+            services.AddScoped<CreateDestinationCommandHandler>();
+            services.AddScoped<DeleteDestinationCommandHandler>();
+			services.AddScoped<UpdateDestinationCommandHandler>();
+
+
+            services.AddLogging(X =>
 			{
 				X.ClearProviders();
 				X.SetMinimumLevel(LogLevel.Debug);
@@ -37,6 +46,8 @@ namespace TraversalCoreProject
 			services.AddDbContext<Context>();
 			services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>()
 			.AddErrorDescriber<customIdentityValidator>().AddEntityFrameworkStores<Context>();
+
+			services.AddHttpClient();
 
 			services.ContainerDependencies();
 
