@@ -17,5 +17,7 @@ namespace EntityLayer.Concrete
         public string GuideTwitter { get; set; }
         public string GuideImageUrl { get; set; }
         public bool Status { get; set; }
+        public List<Destination> Destinations { get; set; }
+        public string GuideLongDesc { get; set; }
     }
 }

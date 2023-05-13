@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,10 +7,16 @@ namespace TraversalCoreProject.ViewComponents.Default
 {
     public class _Testimonial:ViewComponent
     {
-        TestimonialManager testimonialManager = new TestimonialManager(new EFTestimonialDal());
+        private readonly ITestimonialService _testimonialService;
+
+        public _Testimonial(ITestimonialService testimonialService)
+        {
+            _testimonialService = testimonialService;
+        }
+
         public IViewComponentResult Invoke()
         {
-            var values = testimonialManager.GetList();
+            var values = _testimonialService.GetList();
             return View(values);
         }
     }

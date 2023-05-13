@@ -9,11 +9,6 @@ using DataAccessLayer.UnitOfWork;
 using DTOLayer.DTOs.AnnouncementDTOs;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer.Container
 {
@@ -32,6 +27,12 @@ namespace BusinessLayer.Container
 
             services.AddScoped<IReservationService, ReservationManager>();
             services.AddScoped<IReservationDal, EFReservationDal>();
+
+            services.AddScoped<ITestimonialService, TestimonialManager>();
+            services.AddScoped<ITestimonialDal, EFTestimonialDal>();
+
+            services.AddScoped<ISubAboutService, SubAboutManager>();
+            services.AddScoped<ISubAboutDal, EFSubAboutDal>();
 
             services.AddScoped<ICommentService, CommentManager>();
             services.AddScoped<ICommentDal, EFCommentDal>();

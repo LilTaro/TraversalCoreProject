@@ -29,6 +29,7 @@ namespace TraversalCoreProject.Areas.Member.Controllers
             model.Surname = values.Surname;
             model.PhoneNumber = values.PhoneNumber;
             model.Mail = values.Email;
+            model.Gender = values.Gender;
             return View(model);
         }
         [HttpPost]
@@ -49,6 +50,7 @@ namespace TraversalCoreProject.Areas.Member.Controllers
             user.Surname=model.Surname;
             user.PhoneNumber = model.PhoneNumber;
             user.Email = model.Mail;
+            user.Gender = model.Gender;
             user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
             var result = await _userManager.UpdateAsync(user);
             if (result.Succeeded)

@@ -1,22 +1,16 @@
-﻿<div class="leave-comment-form mt-5" id="reply">
+﻿@if (User.Identity.IsAuthenticated)
+{
+<div class="leave-comment-form mt-5" id="reply">
     <h4 class="side-title mb-2">Bir yorum bırakın.</h4>
     <p class="mb-4">
         İşaretli alanları doldurmanız gerekmektedir. *
     </p>
     <form method="post" asp-action="AddComment" asp-controller="Comment">
+        <input type="hidden" name="DestinationID" value="@ViewBag.id" />
+        <input type="hidden" name="AppUserID" value="@ViewBag.userid" />
         <div class="form-group">
             <textarea name="CommentContent" class="form-control" placeholder="Yorumunuz*" required=""
                       spellcheck="false"></textarea>
-        </div>
-        <div class="input-grids row">
-
-            <div class="form-group col-lg-6">
-                <input type="text" name="CommentUser" class="form-control" placeholder="İsminiz*"
-                       required="">
-            </div>
-            <div class="form-group col-lg-6">
-                <input type="text" name="DestinationID" hidden class="form-control" required="" value="@ViewBag.id">
-            </div>
         </div>
 
         <div class="submit text-right">
@@ -24,3 +18,8 @@
         </div>
     </form>
 </div>
+}
+else
+{
+    <h1>Yorumları Görmek ve Yorum Yapabilmek İçin Üye Olmanız Gerekli</h1>
+}
