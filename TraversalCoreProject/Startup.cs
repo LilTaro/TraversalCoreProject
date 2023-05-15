@@ -3,15 +3,16 @@ using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
 using FluentValidation.AspNetCore;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
-using TraversalCoreProject.CQRS.Handlers;
 using TraversalCoreProject.CQRS.Handlers.DestinationHandlers;
 using TraversalCoreProject.Models;
 
@@ -59,13 +60,17 @@ namespace TraversalCoreProject
 
 			services.AddControllersWithViews().AddFluentValidation();
 
-			//services.AddMvc(config =>
-			//{
-			//	var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-			//	config.Filters.Add(new AuthorizeFilter(policy));
-			//});
+			services.AddMvc(config =>
+			{
+				var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+				config.Filters.Add(new AuthorizeFilter(policy));
+			});
 
 			services.AddMvc();
+			services.ConfigureApplicationCookie(options =>
+			{
+				options.LoginPath = "/Login/SignIn";
+			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -98,14 +103,6 @@ namespace TraversalCoreProject
 					name: "default",
 					pattern: "{controller=Home}/{action=Index}/{id?}");
 			});
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                  name: "areas",
-                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-                );
-            });
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,18 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SignalRApi.DAL;
+using SignalRApi.Hubs;
 using SignalRApi.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SignalRApi
 {
@@ -30,6 +25,11 @@ namespace SignalRApi
         {
             services.AddScoped<VisitorService>();
             services.AddSignalR();
+            services.AddCors(options => options.AddPolicy("CorsPolicy",
+                builder =>
+                {
+                    builder.AllowAnyHeader().AllowAnyHeader().SetIsOriginAllowed((host) => true).AllowCredentials();
+                }));
             services.AddEntityFrameworkNpgsql().AddDbContext<Context>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             
@@ -51,12 +51,13 @@ namespace SignalRApi
             }
 
             app.UseRouting();
-
+            app.UseCors("CorsPolicy");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<VisitorHub>("/VisitorHub");
             });
         }
     }
