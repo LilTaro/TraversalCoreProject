@@ -1,11 +1,9 @@
-﻿using BusinessLayer.Concrete;
-using DataAccessLayer.Abstract;
-using DataAccessLayer.EntityFramework;
+﻿using DataAccessLayer.Abstract;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TraversalCoreProject.Areas.Member.Controllers
 {
-    [Area("Member")]
+	[Area("Member")]
     public class DestinationController : Controller
     {
         private readonly IDestinationDal _destinationDal;

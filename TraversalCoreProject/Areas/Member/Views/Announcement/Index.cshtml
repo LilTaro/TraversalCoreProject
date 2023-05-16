@@ -1,0 +1,29 @@
+﻿@using EntityLayer.Concrete
+@model List<Announcement>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    int count = 0;
+}
+
+<h1>Duyurularımız</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Duyuru Başlığı</th>
+        <th>Duyuru İçeriği</th>
+        <th>Duyuru Tarihi</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        { count += 1; }
+        <tr>
+            <td>@count</td>
+            <td>@item.AnnouncementTitle</td>
+            <td>@item.AnnouncementContent</td>
+            <td>@item.AnnouncementDate.ToShortDateString()</td>
+        </tr>
+    }
+</table>
+
