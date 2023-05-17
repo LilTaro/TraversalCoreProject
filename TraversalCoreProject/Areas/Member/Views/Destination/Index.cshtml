@@ -10,7 +10,7 @@
 	<div class="col-12">
 		<div class="card">
 			<div class="card-header">
-				<h4 class="card-title">Aktif Tur Rotalarımız</h4>
+				<h4 class="card-title">Tur Rotası Arama Sayfası</h4>
 				<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 				<div class="heading-elements">
 					<ul class="list-inline mb-0">
@@ -24,7 +24,16 @@
 			<div class="card-content collapse show">
 				<div class="card-body">
 					<p class="card-text">Alanında Uzman Rehberlerimiz Eşliğinde Balkanlardan Orta Asyaya, Doğu Avrupadan, Anadolunun Dört Bir Yanına En Uygun Fiyatlarla Sunduğumuz Tur Listemize Ve Tur Detaylarına Aşağıdaki Tablodan Erişebilirsiniz.</p>
-					<div class="table-responsive">
+					<form asp-action="Index" asp-area="Member">
+						<div>
+							<b>Lütfen Aranacak Şehri Giriniz</b>
+							<input type="text" name="searchString" class="form-control" value="@ViewData["CurrentFilter"]" />
+							<br />
+							<input type="submit" value="Şehir Ara" class="btn btn-outline-success" />
+						</div>
+
+					</form>
+					<div class="table-responsive mt-3">
 						<table class="table">
 							<tr>
 								<th>#</th>

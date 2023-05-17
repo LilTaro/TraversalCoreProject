@@ -1,22 +1,19 @@
 ﻿using BusinessLayer.Abstract;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace TraversalCoreProject.ViewComponents.MemberDashboard
+namespace TraversalCoreProject.Areas.Member.Controllers
 {
-    public class _LastDestinations : ViewComponent
+    [Area("Member")]
+    public class LastDestinations : Controller
     {
         private readonly IDestinationService _destinationService;
 
-        public _LastDestinations(IDestinationService destinationService)
+        public LastDestinations(IDestinationService destinationService)
         {
             _destinationService = destinationService;
         }
 
-        public IViewComponentResult Invoke()
+        public IActionResult Index()
         {
             var values = _destinationService.GetLastFourDestinations();
             return View(values);

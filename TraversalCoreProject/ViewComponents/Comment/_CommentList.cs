@@ -1,13 +1,11 @@
 ﻿using BusinessLayer.Abstract;
-using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete;
-using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
 namespace TraversalCoreProject.ViewComponents.Comment
 {
-    public class _CommentList:ViewComponent
+	public class _CommentList:ViewComponent
     {
         private readonly ICommentService _commentService;
         Context context = new Context();

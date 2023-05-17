@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -48,7 +49,9 @@ namespace TraversalCoreProject
 
 			services.AddDbContext<Context>();
 			services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>()
-			.AddErrorDescriber<customIdentityValidator>().AddEntityFrameworkStores<Context>();
+			.AddErrorDescriber<customIdentityValidator>()
+			.AddTokenProvider<DataProtectorTokenProvider<AppUser>>(TokenOptions.DefaultProvider)
+			.AddEntityFrameworkStores<Context>();
 
 			services.AddHttpClient();
 
@@ -60,13 +63,18 @@ namespace TraversalCoreProject
 
 			services.AddControllersWithViews().AddFluentValidation();
 
+			services.AddLocalization(opt =>
+			{
+				opt.ResourcesPath = "Resources";
+			});
+
 			services.AddMvc(config =>
 			{
 				var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
 				config.Filters.Add(new AuthorizeFilter(policy));
 			});
 
-			services.AddMvc();
+			services.AddMvc().AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
 			services.ConfigureApplicationCookie(options =>
 			{
 				options.LoginPath = "/Login/SignIn";
@@ -96,6 +104,11 @@ namespace TraversalCoreProject
 			app.UseRouting();
 
 			app.UseAuthorization();
+
+			var supportedCultures = new[] { "en", "tr" };
+			var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[1])
+				.AddSupportedCultures(supportedCultures).AddSupportedUICultures(supportedCultures);
+			app.UseRequestLocalization(localizationOptions);
 
 			app.UseEndpoints(endpoints =>
 			{
