@@ -1,0 +1,45 @@
+﻿@using EntityLayer.Concrete
+@model List<Announcement>
+
+<div class="col-xl-4 col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Duyurularımız</h4>
+            <a class="heading-elements-toggle">
+                <i class="fa fa-ellipsis-v font-medium-3"></i>
+            </a>
+            <div class="heading-elements">
+                <ul class="list-inline mb-0">
+                    <li>
+                        <a data-action="reload">
+                            <i class="ft-rotate-cw"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="card-content">
+            <div id="recent-buyers" class="media-list">
+                @foreach (var item in Model)
+                {
+                    <a href="/Member/Announcement/Index/" class="media border-0">
+                        <div class="media-body w-100">
+                            <span class="list-group-item-heading">
+                                @item.AnnouncementTitle
+                            </span>
+                            <p class="list-group-item-text mb-0">
+                                <span class="blue-grey lighten-2 font-small-3">@item.AnnouncementContent</span>
+                            </p>
+                            <p class="list-group-item-text mb-0">
+                                <span class="blue-grey lighten-2 font-small-3">@item.AnnouncementDate.ToShortDateString()</span>
+                            </p>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

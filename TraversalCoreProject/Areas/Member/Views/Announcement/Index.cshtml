@@ -2,28 +2,52 @@
 @model List<Announcement>
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    Layout = "~/Views/Shared/_MemberLayout.cshtml";
     int count = 0;
 }
 
-<h1>Duyurularımız</h1>
-
-<table class="table table-bordered">
-    <tr>
-        <th>#</th>
-        <th>Duyuru Başlığı</th>
-        <th>Duyuru İçeriği</th>
-        <th>Duyuru Tarihi</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        { count += 1; }
-        <tr>
-            <td>@count</td>
-            <td>@item.AnnouncementTitle</td>
-            <td>@item.AnnouncementContent</td>
-            <td>@item.AnnouncementDate.ToShortDateString()</td>
-        </tr>
-    }
-</table>
-
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title">Aktif Rezervasyonlar</h4>
+				<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+				<div class="heading-elements">
+					<ul class="list-inline mb-0">
+						<li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+						<li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+						<li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+						<li><a data-action="close"><i class="ft-x"></i></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="card-content collapse show">
+				<div class="card-body">
+					<p class="card-text">Web Sitemiz Traversal Üzerindeki Duyurulara Buradan Ulaşabilirsiniz.</p>
+					<div class="table-responsive">
+						<table class="table">
+							<tr>
+								<th>#</th>
+								<th>Duyuru Başlığı</th>
+								<th>Duyuru İçeriği</th>
+								<th>Duyuru Tarihi</th>
+							</tr>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									{ count += 1; }
+									<tr>
+										<td>@count</td>
+										<td>@item.AnnouncementTitle</td>
+										<td>@item.AnnouncementContent</td>
+										<td>@(((DateTime)item.AnnouncementDate).ToString("dd-MMM-yyyy"))</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
