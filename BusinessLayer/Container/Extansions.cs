@@ -7,6 +7,7 @@ using DataAccessLayer.Abstract;
 using DataAccessLayer.EntityFramework;
 using DataAccessLayer.UnitOfWork;
 using DTOLayer.DTOs.AnnouncementDTOs;
+using DTOLayer.DTOs.ContactDTOs;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -55,6 +56,12 @@ namespace BusinessLayer.Container
             services.AddScoped<IAccountService, AccountManager>();
             services.AddScoped<IAccountDal, EFAccountDal>();
 
+            services.AddScoped<IFeatureService, FeatureManager>();
+            services.AddScoped<IFeatureDal, EFFeatureDal>();
+
+            services.AddScoped<IFeature2Service, Feature2Manager>();
+            services.AddScoped<IFeature2Dal, EFFeature2Dal>();
+
             services.AddScoped<IUnitOfWorkDal, UnitOfWorkDal>();
 
         }
@@ -62,6 +69,8 @@ namespace BusinessLayer.Container
         public static void CustomerValidator(this IServiceCollection services)
         {
             services.AddTransient<IValidator<AnnouncementAddDTO>, AnnouncementValidator>();
+            services.AddTransient<IValidator<AnnouncementUpdateDTO>, AnnouncementUpdateValidator>();
+            services.AddTransient<IValidator<SendMessageDTO>, ContactUsValidator>();
         }
     }
 }

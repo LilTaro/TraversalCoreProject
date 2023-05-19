@@ -46,7 +46,7 @@ namespace TraversalCoreProject.Areas.Member.Controllers
                 user.ImageUrl = "/userImages/" + imagename;
             }
             user.Name = model.Name;
-            user.Surname=model.Surname;
+            user.Surname = model.Surname;
             user.PhoneNumber = model.PhoneNumber;
             user.Email = model.Mail;
             user.Gender = model.Gender;

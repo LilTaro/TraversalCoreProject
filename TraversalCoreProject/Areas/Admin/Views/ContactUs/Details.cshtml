@@ -1,0 +1,15 @@
+﻿@model ContactUs
+@{
+	ViewData["Title"] = "Details";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form>
+	<input asp-for="Name" disabled type="text" class="form-control" />
+	<br />
+	<input asp-for="Mail" disabled type="email" class="form-control" />
+	<br />
+	<input asp-for="Subject" disabled type="text" class="form-control" />
+	<br />
+	<textarea asp-for="MessageBody" disabled class="form-control"></textarea>
+</form>

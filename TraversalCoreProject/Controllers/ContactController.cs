@@ -35,7 +35,7 @@ namespace TraversalCoreProject.Controllers
                     Mail = sendMessage.Mail,
                     Subject = sendMessage.Subject,
                     Name = sendMessage.Name,
-                    Status = sendMessage.Status,
+                    Status = true,
                     MessageDate = Convert.ToDateTime(DateTime.Now.ToShortDateString())
                 });
                 return RedirectToAction("Index", "Default");

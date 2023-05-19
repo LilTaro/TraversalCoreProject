@@ -1,6 +1,4 @@
-﻿using DocumentFormat.OpenXml.Office2010.ExcelAc;
-using DocumentFormat.OpenXml.Office2021.DocumentTasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -10,7 +8,7 @@ using TraversalCoreProject.Areas.Admin.Models;
 
 namespace TraversalCoreProject.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+	[Area("Admin")]
     [Route("Admin/VisitorAPI")]
     public class VisitorAPIController : Controller
     {
