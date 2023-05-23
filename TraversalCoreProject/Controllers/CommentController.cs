@@ -1,21 +1,16 @@
-﻿using BusinessLayer.Concrete;
-using DataAccessLayer.Abstract;
-using DataAccessLayer.EntityFramework;
-using DocumentFormat.OpenXml.Office2021.DocumentTasks;
+﻿using BusinessLayer.Abstract;
 using EntityLayer.Concrete;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Threading.Tasks;
 
 namespace TraversalCoreProject.Controllers
 {
-    public class CommentController : Controller
+	public class CommentController : Controller
     {
-        private readonly ICommentDal _commentDal;
-        public CommentController(ICommentDal commentDal)
+        private readonly ICommentService _commentService;
+        public CommentController(ICommentService commentService)
         {
-            _commentDal = commentDal;
+            _commentService = commentService;
         }
 
         [HttpGet]
@@ -28,7 +23,7 @@ namespace TraversalCoreProject.Controllers
         {
             comment.CommentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             comment.Status = true;
-            _commentDal.Insert(comment);
+            _commentService.Add(comment);
             return RedirectToAction("Index","Destination");
         }
     }
