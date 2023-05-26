@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TraversalCoreProject.CQRS.Commands.DestinationCommands;
-using TraversalCoreProject.CQRS.Handlers;
 using TraversalCoreProject.CQRS.Handlers.DestinationHandlers;
 using TraversalCoreProject.CQRS.Queries.DestinationQueries;
 
