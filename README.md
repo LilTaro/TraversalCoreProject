@@ -2,11 +2,11 @@
 
 **Proje Kampı Linki:** https://www.youtube.com/playlist?list=PLKnjBHu2xXNMK5MBogdXmsXVi3K_eEZT5
 
-<pre>Projenin içerisinde .NET 5.0, DTO, API, SignalRApi, CQRS, UnitofWork, MediatR, Ajax kullanılmıştır.</pre>
-<pre> Proje MVC kullanılarak MSSQL kullanılarak yapılmıştır </pre>
-<pre> N Katmanlı Mimari kullanılarak yapılmıştır. Codefirst kullanılarak yapılmıştır. </pre>
-<pre> Proje bir otel sitesi projesidir. İçinde Index paneli, Admin paneli ve Member Paneli bulunur. </pre>
-<pre> Proje ile ilgili Resimler: </pre>
+<pre>Project has been made with .NET 5.0, DTO, API, SignalRApi, CQRS, UnitofWork, MediatR and Ajax.</pre>
+<pre> Project created by using .NET MVC and MSSQL.</pre>
+<pre> Project created by using N tier architecture with Code first. </pre>
+<pre> Project is a hotel site. It contains Index panel, Admin panel and Member Panel. </pre>
+<pre> Images About Project: </pre>
 
 ![Login](https://github.com/LilTaro/TraversalCoreProject/assets/115897622/adf9d1f1-f2e4-451f-875e-53ce76ffbc3c)
 ![Register](https://github.com/LilTaro/TraversalCoreProject/assets/115897622/91dc36ae-1ed1-46d9-9548-fb421eeaf70c)
