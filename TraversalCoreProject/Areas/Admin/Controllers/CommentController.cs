@@ -21,6 +21,12 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
             var values = _commentService.GetListCommentWithDestination();
             return View(values);
         }
+        [Route("Details/{id}")]
+        public IActionResult Details(int id) 
+        {
+            var values = _commentService.GetByID(id);
+            return View(values);
+        }
         [Route("DeleteComment/{id}")]
         public IActionResult DeleteComment(int id)
         {

@@ -1,0 +1,18 @@
+﻿@model Comment
+@using System.ComponentModel.DataAnnotations;
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Yorum Detayları</h1>
+
+<form>
+    <label>Kullanıcı</label>
+    <input type="text" asp-for="CommentUser" disabled class="form-control" />
+    <label>Tarih</label>
+    <input type="text" asp-for="CommentDate" disabled class="form-control" />
+    <label>Detaylar</label>
+    <textarea asp-for="CommentContent" disabled cols="10" rows="10" class="form-control"></textarea>
+</form>

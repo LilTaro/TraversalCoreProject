@@ -14,6 +14,7 @@
         <th>Kullanıcı</th>
         <th>Rota</th>
         <th>Tarih</th>
+        <th>Detaylar</th>
         <th>Sil</th>
     </tr>
     @foreach (var item in Model)
@@ -24,6 +25,7 @@
             <td>@item.CommentUser</td>
             <td>@item.Destination.DestinationCity</td>
             <td>@(((DateTime)item.CommentDate).ToString("dd-MMM-yyyy"))</td>
+            <td><a href="/Admin/Comment/Details/@item.CommentID" class="btn btn-outline-info">Detaylar</a></td>
             <td><a href="/Admin/Comment/DeleteComment/@item.CommentID" class="btn btn-outline-danger">Sil</a></td>
         </tr>
     }

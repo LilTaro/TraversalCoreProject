@@ -11,7 +11,6 @@
 <table class="table table-bordered">
     <tr>
         <th>#</th>
-        <th>Misafir Ad Soyad</th>
         <th>Rota</th>
         <th>Kişi Sayısı</th>
         <th>Tarih</th>
@@ -22,11 +21,10 @@
         { count += 1; }
         <tr>
             <td>@count</td>
-            <td>@item.AppUser.Name @item.AppUser.Surname</td>
             <td>@item.Destination.DestinationCity</td>
             <td>@item.PersonCount</td>
             <td>@(((DateTime)item.ReservationDate).ToString("dd-MMM-yyyy"))</td>
-            <td><a href="" class="btn btn-outline-info">Detaylar</a></td>
+            <td>@item.Description</td>
         </tr>
     }
 </table>
